@@ -9,55 +9,74 @@ namespace TestSolution
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-           
-            //Ascending order of age
-            var orderByResult = from c in Customer
-                                orderby c.CustomerAge
+       public static void Main(string[] args)
+       {
+            // 4: given orderid
+            Customer.GetCustomerById(3);
+            //End
+
+
+            // 3 : Ascending order of age
+            var orderByResult = from c in Customer.customers
+                                orderby c.Age
                                 select c;
+            foreach (var agegroup in orderByResult)
+            {
+                Console.WriteLine("customer detail in ascending order of Age:");
+                agegroup.ShowData();
 
-            //var customerInAscOrder = Customer.OrderBy(c => c.customerAge);
+            }
+            // End Ascending order of age
 
-           // customer.ToList().ForEach(c => Console.WriteLine(c.Name));
 
-            //customer below 25
+            // 1 : customer below 25
             foreach (var c in Customer.customers)
             {
-                if(Age < 25)
+                if (c.Age < 25)
                 {
-                    customer.ShowData();
-                }
-
-
-                //Console.WriteLine($"id={item.Id}, name={item.Name}");
-                //Console.ReadKey();
-
-
-
-            }
-
-            //orders which are placed before 2019
-            foreach (var order in Orders)
-            {
-                if(Order.Id==id)
-                {
+                    Console.WriteLine("Customer Below 25:");
+                    c.ShowData();
 
                 }
-
             }
+            //End customer below 25
 
-            //product manufacture in 2018
-            foreach ( var product in Products)
+
+
+
+            // 2 : orders which are placed before 2019
+            foreach (var item in Order.Orders)
             {
+               if(item.year<2019)
+
+                item.ShowData();
 
             }
-            //product details having third largest cost price
+            //End
+
+
+
+            // 5 : largest cost price
+
+            foreach (var item in Product.Products)
+
+            {
+               
+                if (item.Cost>100)
+                {
+
+
+                    Console.WriteLine($" name={item.Name},cost={item.Cost}");
+                    Console.ReadKey();
+                }
+               
+            }
+            //End
 
 
 
             Console.ReadLine();
-        }
+       }
 
 
 
