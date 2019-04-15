@@ -8,26 +8,29 @@ namespace TestSolution
 {
     class Order
     {
-        int oId;
-        public int year;
-        public List<int> Orderdate { get; set; }
-        public List<int> ProductIds { get; set; }
+        public int oId;
+        public int ProductId;
+        public int date;
+        public DateTime Orderdate;
+        public static List<int> ProductIds { get; set; }
 
         public static List<Order> Orders = new List<Order>() {
-            new Order(101, new List<int>(){2017, 12, 25 } ,new List<int>() { 1,2,4 }),
-            new Order(102, new List<int>(){2016, 1, 1 } ,new List<int>() { 2,4 }),
-            new Order(103, new List<int>(){2017, 2, 3 } ,new List<int>() { 1,3}),
-             new Order(104, new List<int>(){2017, 7, 8 } ,new List<int>() { 2,5 }),
-              new Order(105, new List<int>(){2018, 8, 9 } ,new List<int>() { 1,4 }),
-               new Order(106, new List<int>(){2018, 10, 15 } ,new List<int>() { 2,3,5 }),
-                new Order(107, new List<int>(){2019, 1, 19 } ,new List<int>() { 3,5 }),
-                 new Order(108, new List<int>(){2019, 2, 21 } ,new List<int>() { 4 }),
+            new Order(101,new DateTime(25/12/2017),new List<int>() { 1,2,4 }),
+            new Order(102, new DateTime(1/ 1/ 2016),new List<int>() { 2,4 }),
+            new Order(103, new DateTime(3/ 2/ 2017),new List<int>() { 1,3}),
+             new Order(104, new DateTime(8/ 7/ 2017),new List<int>() { 2,5 }),
+              new Order(105,new DateTime( 9/ 8/ 2018),new List<int>() { 1,4 }),
+               new Order(106,new DateTime(15/ 10/ 2018),new List<int>() { 2,3,5 }),
+                new Order(107,new DateTime(19/ 1/ 2019),new List<int>() { 3,5 }),
+                 new Order(108,new DateTime(21/ 2/ 2019),new List<int>() { 4 }),
 
 
 
 
 
         };
+        
+     
 
 
 
@@ -35,18 +38,19 @@ namespace TestSolution
 
 
 
-
-        public Order(int oid,List<int> orderdate, List<int> productids)
+        public Order(int oid,DateTime orderdate, List<int> productids)
         {
             oId = oid;
-           List <int> Datetime = orderdate;
-           List<int> ProductIds = productids;
+            Orderdate = orderdate;
+          List<int> ProductIds = productids;
         }
 
 
         public void ShowData()
         {
-            Console.WriteLine("order placed before 2019: ");
+            Console.WriteLine("order id is:{0}", oId);
+            Console.WriteLine("product id is:{0}",ProductIds);
+            Console.WriteLine("order date is:{0}",Orderdate);
             Console.ReadLine();
 
         }
