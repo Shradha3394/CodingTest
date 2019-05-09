@@ -9,91 +9,77 @@ namespace TestSolution
 {
     class Program
     {
-       public static void Main(string[] args)
-       {
-            // 4 : given orderid
-            Customer.GetCustomerById(2);
+        public static void Main(string[] args)
+        {
+            // 1:Customer below 25
+            foreach(var c in Customer.Customers)
+            {
+                if(c.Age<25)
+                {
+                    Console.WriteLine("CUSTOMER BELOW 25:");
+                    c.ShowData();
+                }
+            }
             //End
-            
 
-            DateTime dt = new DateTime();
-            Console.WriteLine("Short date pattern (d): " + dt.ToString("d"));
-
-            Console.WriteLine(dt.ToString("dd/MM/yyyy"));
-           
-
-            // Console.WriteLine(dt.ToShortDateString());
-
-
-
-            // 2 : orders which are placed before 2019
+            // 2 : Order before 2019
             foreach (var item in Order.Orders)
             {
-               if(item.date <2019 && item.ProductId > 2 )
-               {
-                    
-                    Console.WriteLine("order before 2019: ");
+                if (item.OrderDate.Year < 2019 && item.ProductIds.Count > 2)
+                {
+                    Console.WriteLine("ORDER BEFORE 2019:");
                     item.ShowData();
-               }
-
-               
-
+                }
             }
+            //End
 
-            //int Orderplaced = (from item in Order.Orders
-            //                   orderby item.Orderdate < 2019
-            //                   select item.Orderdate);
+            // 3 : Ascending order of Age
+            var orderByResult = from c in Customer.Customers
+                                orderby c.Age
+                                select c;
+            foreach(var agegroup in orderByResult)
+            {
+                Console.WriteLine("customer detail in ascending order of age:");
+                agegroup.ShowData();
+            }
+            //End
+
+           // 4 : Given orderid
+            Console.Write("ENTER THE COURSE ID : ");
+            int value = Convert.ToInt32(Console.ReadLine());
+            Customer.GetCustomerById(value);
+           
+            //End
+          
+            // 5 : Third Largest cost 
+            var Result = Product.Products.OrderByDescending(p => p.Cost)
+                 .Take(3)
+                 .Skip(2)
+                 .ToList();
+
+            foreach (var result in Result)
+            {
+                Console.WriteLine("THE THIRD LARGEST COST IS:");
+                result.ShowData();
+            }
 
             //End
 
-            // 6 : product manufacture in 2018
+           // 6 : Product manufacture in 2018
 
             foreach (var item in Product.Products)
             {
-               
-                if (item.Id > 3 )
+                if(item.MFG.Year == 2018)
                 {
-                    Console.WriteLine("product manufacture in 2018:");
-
+                    Console.WriteLine("PRODUCT MANUFACTURE IN 2018:");
                     item.ShowData();
-                    
-
-                }
-
-            }
-
-            // 5 : product details having third largest cost price
-            foreach (var item in Product.Products)
-            {
-                if (item.Cost > 100)
-                {
-                    Console.WriteLine("largest cost price:");
-
-                    item.ShowData();
-
                 }
             }
-            // var thirdMax =Product.Products.OrderByDescending(r => r).Take(2).LastOrDefault();
 
-            double thirdHighest = (from item in Product.Products
-                                   orderby item.Cost descending
-                                   select item.Cost).Skip(1).First();
-
-            //var Largest = Product.Products.Max();
-            //Console.WriteLine("largest cost is:{0}",Largest);
-
-
-
+            //End
             Console.ReadLine();
-       }
-
-
-
-
-
-
-
-
+        }
+     
     }
 }
 
