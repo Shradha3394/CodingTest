@@ -28,20 +28,7 @@ namespace TestSolution
             {
                 if (product.ProductId == id)
                 {
-                    double Total = 0;
-                    int i;
-
-                    //for(i = 0;i <= 5;i++)
-                    //{ 
-                    //   Total +=product.Cost;
-                    //}
-
-                    //foreach (Product c in Products)
-                    //{
-                    //    Total += c.Cost;
-                    //}
-
-                  //  Console.WriteLine("total cost is:{0}", Total);
+                    Customer.TotalCost += product.Cost;
                 }
             }
         }

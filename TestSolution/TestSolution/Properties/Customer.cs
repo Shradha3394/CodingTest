@@ -12,6 +12,7 @@ namespace TestSolution
         public  string Name;
         public int Age;
         public List<int> OrderIds;
+        public static double TotalCost = 0;
 
         public static List<Customer> Customers = new List<Customer>() {
             new Customer(01,"Riya",18,new List<int> { 101,104 }),
@@ -48,13 +49,18 @@ namespace TestSolution
             Console.WriteLine("customer id is:{0}", CustomerId);
             Console.WriteLine("customer name is:{0}", Name);
             Console.WriteLine("customer age is:{0}",Age);
+            var totalCost = 0.0;
+
             foreach (int oi in OrderIds)
             {
-              //  Console.WriteLine("customer orderid is:{0}", oi);
-                  Order.GetOrderById(oi);
+                var order = Order.Orders.Find(x => x.OrderId.Equals(oi));
+                foreach (var productId in order.ProductIds)
+                {
+                    var product = Product.Products.Find(x => x.ProductId.Equals(productId));
+                    totalCost += product.Cost;
+                }
             }
-
-             Console.ReadLine();
+            Console.WriteLine("Total Cost {0}", totalCost);
         }
            
 

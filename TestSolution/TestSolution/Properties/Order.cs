@@ -45,12 +45,10 @@ namespace TestSolution
         public void ShowData()
         {
          //   Console.WriteLine("order id is:{0}", OrderId);
-            Console.WriteLine("order date is:{0}", OrderDate);
             foreach (int pi in ProductIds)
             {
              // Console.WriteLine("product id is:{0}", pi);
                 Product.GetProductById(pi);
-                Console.ReadLine();
             }
 
         }
