@@ -28,28 +28,31 @@ namespace TestProject
             Age = age;
             Gender = gender;
         }
-        public static void GetAuthorById(int id)
+        public static void GetAuthorById(int AuthorId)
         {
-            foreach(var author in AuthorList)
+            foreach (var author in AuthorList)
             {
-              
-               // author.ShowData();
+                if (author.Id == AuthorId)
+                {
+                  
+                    author.ShowData();
+                }
+
+
+
             }
+
+
         }
 
 
-        //foreach(var author in AuthorList)
-        //{}
-        //    if(Author.Gender=="Female")
-        //    {
-        //        Console.WriteLine("name of author:{0}", Name);
-        //    }
 
 
 
         public void ShowData()
         {
-            Console.WriteLine("gender is:{0}", Gender);
+            Console.WriteLine("name of author:{0}",Name);
+            //Console.WriteLine("gender is:{0}", Gender);
         }
     }
 }

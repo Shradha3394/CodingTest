@@ -9,11 +9,12 @@ namespace TestProject
     class Book
     {
         public int Id;
-        public string Name;
+        public string BName;
         public double Price;
         public DateTime PublishedDate;
         public string Type;
         public int AuthorId;
+       
 
         public static List<Book> BookList = new List<Book> {
          new Book(101,"Hamlet",200.50,new DateTime(2017,12,25),"PaperBack",01),
@@ -27,10 +28,10 @@ namespace TestProject
 
         };
 
-        public Book(int id,string name,double price,DateTime publisheddate,string type,int authorid)
+        public Book(int id,string bname,double price,DateTime publisheddate,string type,int authorid)
         {
             Id = id;
-            Name = name;
+            BName = bname;
             Price = price;
             PublishedDate = publisheddate;
             Type = type;
@@ -41,21 +42,23 @@ namespace TestProject
         {
             foreach(var book in BookList)
             {
-                if(book.PublishedDate.Year<2018)
+                if(book.Id==id)
                 {
-                  //  Console.WriteLine("book published before 2018:");
                     book.ShowData();
+                    Customer.Total += book.Price;
 
                 }
-                   
-
                 
+               
+                
+
+
             }
         }
 
         public void ShowData()
         {
-            Console.WriteLine("name of book:{0}", Name);
+            Console.WriteLine("name of book:{0}", BName);
           //  Console.WriteLine("Author id is:{0}",AuthorId);
             
         }

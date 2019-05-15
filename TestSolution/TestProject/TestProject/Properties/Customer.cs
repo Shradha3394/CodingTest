@@ -12,6 +12,7 @@ namespace TestProject
         public string Name;
         public int Age;
         public List<int> BookIds { get; set; }
+        public static double Total = 0;
 
         public static List<Customer> CustomerList = new List<Customer> {
          new Customer(1,"Sumit",25,new List<int> { 101,105,104 }),
@@ -40,10 +41,33 @@ namespace TestProject
                 if (customer.Id == id)
                 {
                     customer.ShowData();
-                    
+
+
                 }
-              
+                //else
+                //{
+                //    Console.WriteLine("no record found");
+                //}
+
+
             }
+
+        }
+        public static void GetCustomerByAuthor(int authorid)
+        {
+            foreach (var customer in CustomerList)
+            {
+                if (customer.Id == authorid)
+                {
+
+                    Console.WriteLine("female author is:{0}", customer.Name);
+                }
+                //else
+                //{
+                //    Console.WriteLine("no record found");
+                //}
+            }
+
         }
 
 
@@ -52,25 +76,28 @@ namespace TestProject
         {
             Console.WriteLine("name of customer:{0}", Name);
             Console.WriteLine("age of customer:{0}", Age);
-            //foreach (int pi in ProductIds)
-            //{
-            //    // Console.WriteLine("product id is:{0}", pi);
-            //    Product.GetProductById(pi);
-            //}
+            Console.WriteLine("no.of book purchased:{0}", Book.BookList.Count);
+         //   Console.WriteLine("name of book:{0}",Book.BookList.BName);
+            foreach (int bi in BookIds)
+            {
+               // Console.WriteLine("book id is:{0}", bi);
+                Book.GetBookById(bi);
+            }
 
-            var totalCost = 0.0;
+            var Total = 0.0;
 
-            //foreach (int bi in BookIds)
-            //{
-            //    var bookids = Book.BookList.Find(x => x.BookIds.Equals(bi));
-            //    foreach (var Id in BookList)
-            //    {
-            //        var product = Product.Products.Find(x => x.ProductId.Equals(productId));
-            //        totalCost += product.Cost;
-            //    }
+            foreach (int id in BookIds)
+            {
+                var bookids = Customer.CustomerList.Find(x => x.Id.Equals(id));
+                foreach (var bi in Book.BookList)
+                {
+                    var book = Book.BookList.Find(x => x.Id.Equals(bi));
+                    Total += book.Price;
+                }
 
+            }
+            Console.WriteLine("Total purchase: {0}", Total);
         }
-            //Console.WriteLine("Total Cost {0}", totalCost);
     }
 }
 
