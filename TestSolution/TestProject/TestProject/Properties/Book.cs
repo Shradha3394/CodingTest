@@ -9,7 +9,7 @@ namespace TestProject
     class Book
     {
         public int Id;
-        public string BName;
+        public string Name;
         public double Price;
         public DateTime PublishedDate;
         public string Type;
@@ -28,10 +28,10 @@ namespace TestProject
 
         };
 
-        public Book(int id,string bname,double price,DateTime publisheddate,string type,int authorid)
+        public Book(int id,string name,double price,DateTime publisheddate,string type,int authorid)
         {
             Id = id;
-            BName = bname;
+            Name = name;
             Price = price;
             PublishedDate = publisheddate;
             Type = type;
@@ -40,27 +40,35 @@ namespace TestProject
 
         public static void GetBookById(int id)
         {
-            foreach(var book in BookList)
+            foreach (var book in BookList)
             {
-                if(book.Id==id)
+                foreach (var item in Customer.CustomerList)
                 {
-                    book.ShowData();
-                    Customer.Total += book.Price;
 
+                    if (book.Id == id)
+                    if(item.BookIds.Contains(id))
+                    {
+                        Console.WriteLine("name of customer:{0}", item.Name);
+                        Console.WriteLine("age of customer:{0}", item.Age);
+                        book.ShowData();
+                        Customer.Total += book.Price;
+
+                    }
                 }
+            }
                 
                
+
                 
-
-
-            }
+            
         }
 
         public void ShowData()
         {
-            Console.WriteLine("name of book:{0}", BName);
-          //  Console.WriteLine("Author id is:{0}",AuthorId);
-            
+            Console.WriteLine("name of book:{0}", Name);
+           
+            //Console.WriteLine("Author id is:{0}",AuthorId);
+           
         }
 
 

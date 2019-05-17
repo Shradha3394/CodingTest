@@ -16,30 +16,33 @@ namespace TestProject
             Customer.GetCustomerById(value);
             //End
 
-            //1:(e)
-            foreach (var name in Author.AuthorList)
-            {
-                name.ShowData();
-            }
-            //End
-
             //2:given bookid
-            Console.WriteLine("enter the book id:");
+            Console.WriteLine("Enter the book id:");
             int ans = Convert.ToInt32(Console.ReadLine());
             Book.GetBookById(ans);
             //End
 
-            // 3:print name 
-            //  Console.WriteLine("name is:");
+            // 3:print  author name 
+            Console.WriteLine("Author name is:");
             foreach (var item in Book.BookList)
             {
-                if (item.Type == "Kindle"&& item.Type=="PaperBack")
+                foreach (var author in Author.AuthorList)
+                if (item.Type == "PaperBack" &&item.AuthorId==author.Id)
                 {
-                    Console.WriteLine("name is:{0}", item.BName);
+                        
+                      Console.WriteLine("name is:{0}", author.Name);
                 }
-
             }
+            foreach (var item in Book.BookList)
+            {
+                foreach (var author in Author.AuthorList)
+                    if (item.Type == "Kindle" && item.AuthorId == author.Id)
+                    {
 
+                        Console.WriteLine("name is:{0}", author.Name);
+
+                    }
+            }
             //End
 
             //4:for a given id print name of female author
@@ -49,20 +52,11 @@ namespace TestProject
             //End
 
 
-            //5:given id print book that are published before 2018
+            ////5:given id print book that are published before 2018
             Console.Write("ENTER THE Author ID : ");
             int result = Convert.ToInt32(Console.ReadLine());
             Author.GetAuthorById(result);
-            foreach (var book in Book.BookList)
-            {
-                if (book.PublishedDate.Year < 2018)
-                {
-                    Console.WriteLine("book name is:{0}",book.BName);
-
-                  
-
-                }
-            }
+            //End
 
 
 

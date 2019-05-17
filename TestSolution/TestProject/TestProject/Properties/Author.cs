@@ -28,19 +28,33 @@ namespace TestProject
             Age = age;
             Gender = gender;
         }
-        public static void GetAuthorById(int AuthorId)
+        public static void GetAuthorById(int Id)
         {
-            foreach (var author in AuthorList)
+            foreach (var item in Author.AuthorList)
             {
-                if (author.Id == AuthorId)
+                foreach (var book in Book.BookList)
                 {
-                  
-                    author.ShowData();
+                    if(book.PublishedDate.Year<2018)                                                 // && book.PublishedDate.Year < 2018)
+                    {
+                    if (item.Id == book.AuthorId)
+                    {
+                            if (book.AuthorId == Id)
+                            {
+
+
+                                // item.ShowData();
+                                Console.WriteLine("book name is:{0}", book.Name);
+                            }
+                    }
+
+                    }
+
+
                 }
 
 
-
-            }
+            }    
+            
 
 
         }
@@ -52,7 +66,9 @@ namespace TestProject
         public void ShowData()
         {
             Console.WriteLine("name of author:{0}",Name);
+          
             //Console.WriteLine("gender is:{0}", Gender);
+           
         }
     }
 }

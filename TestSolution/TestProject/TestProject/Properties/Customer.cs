@@ -40,34 +40,49 @@ namespace TestProject
             {
                 if (customer.Id == id)
                 {
-                    customer.ShowData();
-
+                       customer.ShowData();
+                    Console.WriteLine("name of customer:{0}", customer.Name);
+                    Console.WriteLine("age of customer:{0}", customer.Age);
+                    Console.WriteLine("no.of book purchased:{0}", customer.BookIds.Count);
 
                 }
-                //else
-                //{
-                //    Console.WriteLine("no record found");
-                //}
 
+                foreach (var author in Author.AuthorList)
+                {
+                    if (author.Id == id)
+                    {
+                        author.ShowData();
+                    }
+                }
 
             }
-
+            
         }
-        public static void GetCustomerByAuthor(int authorid)
+        public static void GetCustomerByAuthor(int id)
         {
             foreach (var customer in CustomerList)
             {
-                if (customer.Id == authorid)
+                foreach (var item in Author.AuthorList)
                 {
+                    if (customer.Id == id)
+                    {
+                        if (item.Id == id)
+                        {
 
-                    Console.WriteLine("female author is:{0}", customer.Name);
+                            //  customer.ShowData();
+
+                            // Console.WriteLine("gender is:{0}", item.Gender);
+                            if (item.Gender == "Female")
+                            {
+                                Console.WriteLine("Author Name is:{0}", item.Name);
+
+                            }
+                        }
+                    }
+
                 }
-                //else
-                //{
-                //    Console.WriteLine("no record found");
-                //}
-            }
 
+            }
         }
 
 
@@ -76,33 +91,40 @@ namespace TestProject
         {
             Console.WriteLine("name of customer:{0}", Name);
             Console.WriteLine("age of customer:{0}", Age);
-            Console.WriteLine("no.of book purchased:{0}", Book.BookList.Count);
-         //   Console.WriteLine("name of book:{0}",Book.BookList.BName);
+            Console.WriteLine("no.of book purchased:{0}", BookIds.Count);
+            //Console.WriteLine("name of author is:{0}");
             foreach (int bi in BookIds)
             {
-               // Console.WriteLine("book id is:{0}", bi);
-                Book.GetBookById(bi);
+              //  Console.WriteLine("book id is:{0}", bi);
+
+              //  Book.GetBookById(bi);
             }
+           
 
             var Total = 0.0;
 
-            foreach (int id in BookIds)
+            foreach (int bi in BookIds)
             {
-                var bookids = Customer.CustomerList.Find(x => x.Id.Equals(id));
-                foreach (var bi in Book.BookList)
-                {
-                    var book = Book.BookList.Find(x => x.Id.Equals(bi));
+                var book = Book.BookList.Find(x => x.Id.Equals(bi));
+                
                     Total += book.Price;
-                }
+               
 
             }
             Console.WriteLine("Total purchase: {0}", Total);
+            
         }
     }
 }
 
 
+//foreach (var id in Author.AuthorList)
+//{
+//    var author = Author.AuthorList.Find(x => x.Id.Equals(id));
 
-        
-    
 
+
+//else
+//{
+//    Console.WriteLine("no record found");
+//}
